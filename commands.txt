@@ -1,0 +1,8 @@
+Ipconfig /all: Displays information about your network adapter, including the physical address, DHCP and DNS servers, subnet mask, and default gateway. You can use this command to identify potential network connectivity issues. 
+Ipconfig /renew: Releases and renews your IP address. 
+Ipconfig /setclassid: Modifies the DHCP class IDs for a specified adapter. 
+Netstat: Provides information and statistics about current TCP/IP network connections and protocols in use. 
+Nslookup: Queries a Domain Name System (DNS) server to obtain an IP address mapping or other DNS records. 
+Ping: Confirms network connectivity between two hosts, and tests the IP address and computer name of a computer. 
+Tracert: Traces the route taken by a packet to its destination on a remote network. You can use this command with an IP address or a host and domain name.
+getent  

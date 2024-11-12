@@ -1,0 +1,1 @@
+#parser configurations for code scanning
