@@ -1,1 +1,1 @@
-#parser configurations for code scanning
+#parser configurations for code scanning and terminal command parsing
