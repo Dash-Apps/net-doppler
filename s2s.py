@@ -4,10 +4,13 @@ import itertools
 
 #makes a tcp request for the given dport(s) and sends it to the specified host
 def tcp_request(ip,dports,flags=""):
-    packet = scapy.IP(dst=ip)/scapy.TCP(dport=dports)
+    packet = scapy.IP(dst=ip)/scapy.TCP(dport=dports,flags=flags)
     ans,unans = scapy.sr(packet)
     return ans,unans
-
+def udp_request(ip,dports,flags=""):
+    packet = scapy.IP(dst=ip)/scapy.TCP(dport=dports,flags=flags)
+    ans,unans=scapy.sr(packet)
+    return ans,unans
 #gains the ip of your device
 def self_ip():
     packet = scapy.IP()
@@ -35,4 +38,3 @@ def packet_sniff(amount=0):
         scapy.sniff(prn=packet_callback,count=amount)
 def packet_callback(packet):
     print(packet.show())
-tcp_request("127.0.0.1",[7])
