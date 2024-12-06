@@ -4,7 +4,7 @@ import itertools
 
 def arp_request(ip):
     ans, unans = scapy.srp(scapy.Ether(dst="ff:ff:ff:ff:ff:ff")/scapy.ARP(pdst=ip), timeout=2)
-    print(ans,unans)
+    return ans, unans
 #makes a tcp request for the given dport(s) and sends it to the specified host
 def tcp_request(ip,dports,timeout=30,flags="",verbose=False):
     packet = scapy.IP(dst=ip)/scapy.TCP(dport=dports,flags=flags)
