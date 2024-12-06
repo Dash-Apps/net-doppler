@@ -4,7 +4,7 @@ import scapy.all as scapy
 import re
 #function for parsing arguments in commands.
 def get_args(line):
-    args = re.findall("-?[\\w.]+",line)
+    args = re.findall("-?[\\w.]+",str(line))
     return args
 
 class ndCLI(cmd.Cmd):
@@ -17,8 +17,9 @@ class ndCLI(cmd.Cmd):
         return line
     #allows you to perform commands respective to your os using subprocess
     def do_os_command(self,line):
-        args =
-        output = subprocess.Popen(['uname', '-a'], stdout=subprocess.PIPE).communicate()[0]
+        args = get_args(line)
+        output = subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0]
+        print(output)
     #pings an ip address using the specified method
     def do_ping(self, line):
         print("Hello, World!")
@@ -31,6 +32,5 @@ class ndCLI(cmd.Cmd):
     def do_quit(self, line):
         return True
 
-#if __name__ == '__main__':
- #   ndCLI().cmdloop()
-print(get_args("ping -tcp -127.0.0.1 -test -test"))
+if __name__ == '__main__':
+    ndCLI().cmdloop()
