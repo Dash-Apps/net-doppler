@@ -3,7 +3,7 @@ import protocols
 import itertools
 
 def arp_request(ip):
-    ans, unans = scapy.srp(scapy.Ether(dst="ff:ff:ff:ff:ff:ff")/scapy.ARP(pdst=ip), timeout=2)
+    ans, unans = scapy.srp(scapy.Ether(pdst=ip)/scapy.ARP(pdst=ip), timeout=2)
     return ans, unans
 #makes a tcp request for the given dport(s) and sends it to the specified host
 def tcp_request(ip,dports,timeout=30,flags="",verbose=False):
@@ -15,7 +15,7 @@ def tcp_request(ip,dports,timeout=30,flags="",verbose=False):
 #makes a udp request for the given 
 def udp_request(ip,dports,timeout=30,flags="",verbose=False):
     packet = scapy.IP(dst=ip)/scapy.UDP(dport=dports)
-    ans,unans=scapy.sr(packet,timeout=timeout)
+    ans,unans=scapy.sr1(packet,timeout=timeout)
     if verbose == True:
         return ans.summary(),unans.summary()
     return ans,unans
