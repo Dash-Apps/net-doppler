@@ -25,4 +25,10 @@ def xmas(ip,dports,timeout,verbose=False):
         open_ports.append(unanswer)
     #return both the open and closed ports list
     return open_ports,closed_ports
+    
+def scan_port(target_ip, port):
+    pkt = IP(dst=target_ip) / TCP(dport=port, flags='S')  # SYN packet
+    response = sr1(pkt, timeout=1, verbose=0)
+    if response and response.haslayer(TCP) and response[TCP].flags == 0x12:  # SYN-ACK response
+        print(f"[+] Open Port: {port}")
 
