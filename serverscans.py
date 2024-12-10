@@ -25,5 +25,11 @@ def xmas(ip,dports,timeout,verbose=False):
         open_ports.append(unanswer)
     #return both the open and closed ports list
     return open_ports,closed_ports
-
-
+#someone who reads this remind me to change it to use sr so it can accept host ranges otherwise it works fine when using the echo port and localhost address
+def sa_scan(target_ip, dport,timeout):
+    pkt = scapy.IP(dst=target_ip) / scapy.TCP(dport=dport, flags='S')  # SYN packet
+    response = scapy.sr1(pkt, timeout=timeout, verbose=0)
+    if response and response.haslayer(scapy.TCP) and response[scapy.TCP].flags == "RA" or "SA":  # SYN-ACK response or RST-ACK response
+        print(f"[+] Closed Port: {dport} : {response}")
+    else:
+        print(f"[+] Open Port: {dport} : {response}")
