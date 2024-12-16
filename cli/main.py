@@ -6,7 +6,7 @@ import re
 def get_args(line):
     args = re.findall("-?[\\w.]+",str(line))
     return args
-
+#The CLI
 class ndCLI(cmd.Cmd):
     prompt = "ndCLI >>> "
     intro= "Thankyou for using Net Doppler!"

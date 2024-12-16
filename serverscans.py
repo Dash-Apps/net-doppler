@@ -1,4 +1,5 @@
 import scapy.all as scapy
+import commands
 import re
 #checks availability of all protocols and returns all results
 def check_protocols(ip,timeout,verbose=False):
@@ -33,3 +34,12 @@ def sa_scan(target_ip, dport,timeout):
         print(f"[+] Closed Port: {dport} : {response}")
     else:
         print(f"[+] Open Port: {dport} : {response}")
+#checks if a server is under cgnat by using multiple methods including traceroutes and simply looking it up using os commands
+#cgnat can cause problems by causing requests to return false positives for closed ports
+def cgnat_check(ip):
+    trcrt = scapy.traceroute(ip,30)
+    
+    
+
+
+cgnat_check("127.0.0.0")

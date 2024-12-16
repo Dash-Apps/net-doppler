@@ -18,11 +18,7 @@ def udp_request(ip,dports,timeout=30,flags="",verbose=False):
     ans,unans=scapy.sr1(packet,timeout=timeout)
     if verbose == True:
         return ans.summary(),unans.summary()
-    return ans,unans
-#gains the ip of your device
-def self_ip():
-    packet = scapy.IP()
-    return packet.show()
+    return ans,unan
 #attempts to fetch the ip of a given website url   
 def get_website_ip(domain):
     dns_req = scapy.IP(dst="8.8.8.8")/scapy.UDP(dport=53)/scapy.DNS(rd=1, qd=scapy.DNSQR(qname=domain))
